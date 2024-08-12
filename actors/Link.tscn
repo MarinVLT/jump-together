@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceh58id0xmk7v"]
+
+[ext_resource type="Texture2D" uid="uid://c43ot50an7win" path="res://assets/Pixel Adventure 1/Free/Traps/Spiked Ball/Chain.png" id="1_5gie3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lthlm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftm4r"]
+atlas = ExtResource("1_5gie3")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_efcql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftm4r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dq3a0"]
+radius = 2.0
+
+[node name="chain" type="RigidBody2D"]
+light_mask = 2
+visibility_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_lthlm")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.98023e-08, 2.98023e-08)
+scale = Vector2(0.625, 0.625)
+sprite_frames = SubResource("SpriteFrames_efcql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dq3a0")
+disabled = true
+debug_color = Color(0, 0.616541, 0.592402, 0.42)
