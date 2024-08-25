@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpqmi082gqpjf"]
+
+[ext_resource type="Texture2D" uid="uid://babv1qih4ky0q" path="res://assets/title_screen/sky-bg.jpg" id="1_c8r0p"]
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_lmpah"]
+[ext_resource type="Texture2D" uid="uid://co8xure3m7gn5" path="res://assets/title_screen/JUMPTOGETHER-logo-removebg-preview.png" id="1_pij2s"]
+[ext_resource type="Texture2D" uid="uid://ce61jbv8c6rlx" path="res://assets/title_screen/rato_e_capivara.png" id="4_ws5tf"]
+[ext_resource type="Theme" uid="uid://burrrtpd8blug" path="res://themes/default_btn.tres" id="35_cg7ex"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lmpah")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 2017.0
+offset_bottom = 1103.0
+texture = ExtResource("1_c8r0p")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 894.0
+offset_bottom = 680.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.564972, 0.485075)
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_pij2s")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="start_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("35_cg7ex")
+text = "JOGAR"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="controls_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("35_cg7ex")
+text = "CONTROLES
+"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="credits_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("35_cg7ex")
+text = "CRÉDITOS"
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="quit_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("35_cg7ex")
+text = "SAIR"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_ws5tf")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start_btn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/controls_btn" to="." method="_on_controls_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/credits_btn" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit_btn" to="." method="_on_quit_btn_pressed"]
