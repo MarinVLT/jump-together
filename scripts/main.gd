@@ -1,6 +1,10 @@
 extends Control
 
 const PLATFORM_PATH = "res://actors/Plataform.tscn"
+const BREAKABLE_PLATFORM_PATH = "res://actors/BreakablePlatform.tscn"
+const PLATFORM_CHANCE = 0.2  # 20% de chance de gerar uma plataforma quebrável
+
+
 const SCREEN_WIDTH = 648
 const SCREEN_HEIGHT = 1000
 var scroll_speed = 10.0
@@ -56,17 +60,23 @@ func _input(event):
 				moving = true
 
 func _on_timer_timeout():
-	print("Timer timeout occurred.")
+	#print("Timer timeout occurred.")
 	_generate_platform()
 
 func _generate_platform():
-	if PLATFORM_PATH and ResourceLoader.exists(PLATFORM_PATH):
-		var platform = load(PLATFORM_PATH).instantiate()
+	var platform_scene_path = PLATFORM_PATH
+	
+	# Define aleatoriamente se a plataforma será quebrável com base na chance
+	if randf() < PLATFORM_CHANCE:
+		platform_scene_path = BREAKABLE_PLATFORM_PATH
+
+	if ResourceLoader.exists(platform_scene_path):
+		var platform = load(platform_scene_path).instantiate()
 		if platform:
 			# Gera uma posição x dentro do intervalo desejado
 			var x_position = randi_range(250, 500)
 			# Reduz o intervalo de valores para a posição y para gerar plataformas mais próximas
-			var y_position = last_y_position - randi_range(40, 60) 
+			var y_position = last_y_position - randi_range(40, 60)
 
 			platform.position = Vector2(x_position, y_position)
 			ysort.add_child(platform)  # Adiciona a plataforma ao nó YSort
@@ -76,3 +86,4 @@ func _generate_platform():
 			print("Failed to instantiate platform.")
 	else:
 		print("Platform scene not found")
+

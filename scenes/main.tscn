@@ -946,10 +946,10 @@ script = ExtResource("3_p1wpt")
 y_sort_enabled = true
 position = Vector2(387, 1)
 
-[node name="Player1" parent="YSort" instance=ExtResource("2_j6gnq")]
+[node name="Player1" parent="YSort" groups=["players"] instance=ExtResource("2_j6gnq")]
 position = Vector2(339, 153)
 
-[node name="Player2" parent="YSort" instance=ExtResource("3_mwyte")]
+[node name="Player2" parent="YSort" groups=["players"] instance=ExtResource("3_mwyte")]
 position = Vector2(418, 155)
 
 [node name="PinJoint2D" type="PinJoint2D" parent="YSort"]

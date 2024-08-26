@@ -32,7 +32,8 @@ func _process(delta):
 			# Atualiza a posição do TileMap
 			position.y = -offset_y
 	else:
-		print("YSort node is null during _process")
+		pass
+		#print("YSort node is null during _process")
 
 func wait_until_ysort_ready() -> void:
 	while not ysort or ysort.position == Vector2.ZERO:
