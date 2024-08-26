@@ -4,7 +4,6 @@ const PLATFORM_PATH = "res://actors/Plataform.tscn"
 const BREAKABLE_PLATFORM_PATH = "res://actors/BreakablePlatform.tscn"
 const PLATFORM_CHANCE = 0.2  # 20% de chance de gerar uma plataforma quebrável
 
-
 const SCREEN_WIDTH = 648
 const SCREEN_HEIGHT = 1000
 var scroll_speed = 10.0
@@ -16,9 +15,15 @@ var time_elapsed = 0.0  # Variável para rastrear o tempo decorrido
 
 @onready var timer := $Timer
 @onready var ysort := $YSort
+@onready var score_label := $CanvasLayer/ScoreLabel  # Referência ao Label de pontuação dentro do CanvasLayer
 
 var last_y_position: float  # Variável para rastrear a última posição Y onde a plataforma foi gerada
 var moving = false  # Variável para controlar se o jogador está se movendo
+
+# Variáveis para a pontuação
+var score = 0
+var score_timer = 0.0  # Tempo do último incremento da pontuação
+var score_interval = 2.0  # Intervalo para incremento da pontuação (em segundos)
 
 func _ready():
 	if timer:
@@ -36,19 +41,34 @@ func _ready():
 	else:
 		print("YSort node not found")
 
+	if score_label:
+		score_label.text = str(score)  # Inicializa o texto do Label com a pontuação inicial
+	else:
+		print("ScoreLabel node not found")
+
 func _process(delta):
 	if ysort:
 		# Verifica se o jogador está se movendo
 		if moving:
 			# Mova o YSort para cima, diminuindo a posição y
 			ysort.position.y -= scroll_speed * delta
-			#print("YSort position: ", ysort.position)
-		
-		# Atualiza o tempo decorrido e ajusta a velocidade de rolagem
-		time_elapsed += delta
-		if time_elapsed >= scroll_speed_increase_interval:
-			scroll_speed += scroll_speed_increase
-			time_elapsed = 0.0  # Reinicia o tempo decorrido
+
+			# Atualiza o tempo decorrido e ajusta a velocidade de rolagem
+			time_elapsed += delta
+			if time_elapsed >= scroll_speed_increase_interval:
+				scroll_speed += scroll_speed_increase
+				time_elapsed = 0.0  # Reinicia o tempo decorrido
+
+			# Atualiza a pontuação
+			score_timer += delta
+			if score_timer >= score_interval:
+				score += 1
+				score_timer = 0.0  # Reinicia o timer de pontuação
+				print("Score: ", score)
+				_update_score_label()  # Atualiza o Label com a nova pontuação
+		else:
+			# Se o personagem não estiver se movendo, reinicia o timer de pontuação
+			score_timer = 0.0
 	else:
 		print("YSort node not found")
 
@@ -87,3 +107,6 @@ func _generate_platform():
 	else:
 		print("Platform scene not found")
 
+func _update_score_label():
+	if score_label:
+		score_label.text = str(score)  # Atualiza o texto do Label com a nova pontuação
