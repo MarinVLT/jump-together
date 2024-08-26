@@ -2,38 +2,45 @@ extends CharacterBody2D
 
 const WALK_SPEED = 100.0
 const RUN_SPEED = 200.0
-const JUMP_FORCE = -400.0
+const JUMP_FORCE = -500.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+const SCREEN_HEIGHT = 1152  # Ajuste conforme necessário para corresponder à altura da tela
+
+# Obtém a gravidade das configurações do projeto.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping := false
-@onready var animation := $anim as AnimatedSprite2D
-@onready var chain := $"../Chain" as Node2D # Referencia para a corrente
+@onready var animation := $anim as AnimatedSprite2D  # Ajuste se necessário para o seu nó de animação
+@onready var chain := $"../Chain" as Node2D  # Referência para a corrente
+
+func _process(delta):
+	# Verifica se o personagem caiu fora da tela
+	if position.y > SCREEN_HEIGHT:
+		die()  # Substitua por sua lógica de game over
 
 func _physics_process(delta):
-	# Add the gravity.
+	# Adiciona a gravidade
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("w") and is_on_floor() and !is_chain_stretched():
+	# Manipula o pulo
+	if Input.is_action_just_pressed("w") and is_on_floor() and not is_chain_stretched():
 		velocity.y = JUMP_FORCE
 		is_jumping = true
 	elif is_on_floor():
 		is_jumping = false
 
-	# Get the input direction and handle the movement/deceleration.
+	# Obtém a direção de entrada e manipula o movimento/desaceleração
 	var direction = Input.get_axis("a", "d")
-	var is_running = Input.is_action_pressed("run2")  # Check if the run key is pressed (Shift)
+	var is_running = Input.is_action_pressed("run2")  # Verifica se a tecla de correr está pressionada
 	var speed = WALK_SPEED
 
 	if is_running:
 		speed = RUN_SPEED
 
-	if direction:
+	if direction != 0:
 		velocity.x = direction * speed
 		animation.scale.x = direction
-		if !is_jumping:
+		if not is_jumping:
 			animation.play("run")
 	elif is_jumping:
 		animation.play("jump")
@@ -41,19 +48,20 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		animation.play("idle")
 
-	# Limitar a movimentação baseado na corrente
+	# Limita a movimentação baseado na corrente
 	if chain:
 		var direction_to_player1 = (chain.player1.position - position).normalized()
 		if position.distance_to(chain.player1.position) > (chain.chain_length * 20):
-			# Limitar movimentação horizontal
+			# Limita a movimentação horizontal
 			if direction_to_player1.x < 0:
-				velocity.x = min(velocity.x, 0) # Permite movimentação para a esquerda
+				velocity.x = min(velocity.x, 0)  # Permite movimentação para a esquerda
 			elif direction_to_player1.x > 0:
-				velocity.x = max(velocity.x, 0) # Permite movimentação para a direita
-			# Limitar pulo
-			#velocity.y = min(velocity.y, 0) # Limita a velocidade vertical para não pular alto
+				velocity.x = max(velocity.x, 0)  # Permite movimentação para a direita
 
 	move_and_slide()
 
 func is_chain_stretched() -> bool:
 	return chain and position.distance_to(chain.player1.position) > (chain.chain_length * 20)
+
+func die():
+	queue_free()  # Remove o personagem da cena, substitua conforme a lógica de game over

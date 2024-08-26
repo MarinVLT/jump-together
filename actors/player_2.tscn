@@ -79,11 +79,10 @@ position = Vector2(226, 597)
 script = ExtResource("1_b2m0y")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
-position = Vector2(6, -5.01332)
+position = Vector2(-3, -7.00001)
 scale = Vector2(1, 1.04635)
 sprite_frames = SubResource("SpriteFrames_fwy6h")
 animation = &"run"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(7, 1)
 shape = SubResource("CapsuleShape2D_bjt5k")
