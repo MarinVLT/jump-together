@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bp0yjoaitmo12"]
+
+[ext_resource type="Script" path="res://scripts/MovingPlatform.gd" id="1_1iwv8"]
+[ext_resource type="Texture2D" uid="uid://b0ilgqidtpek3" path="res://assets/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="2_rn8qj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gf0w"]
+atlas = ExtResource("2_rn8qj")
+region = Rect2(272, 16, 48, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rnvut"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gf0w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3066d"]
+size = Vector2(46, 4)
+
+[node name="MovingPlatform" type="StaticBody2D"]
+script = ExtResource("1_1iwv8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rnvut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3066d")
