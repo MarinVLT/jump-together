@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6j33v5y1yxk6"]
+[gd_scene load_steps=15 format=3 uid="uid://b6j33v5y1yxk6"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rrhqe"]
 [ext_resource type="FontFile" uid="uid://bxy7advf4ljym" path="res://themes/fonts/m04fatal_fury/m04b.TTF" id="2_eopce"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/Chain.gd" id="4_u5jrd"]
 [ext_resource type="Texture2D" uid="uid://b0ilgqidtpek3" path="res://assets/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="5_dp6ns"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="6_ahgm4"]
+[ext_resource type="Script" path="res://end_area.gd" id="9_h37w5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28lst"]
 texture = ExtResource("5_dp6ns")
@@ -918,6 +919,9 @@ texture = ExtResource("5_dp6ns")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_m25yg")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ot6t"]
+size = Vector2(399, 73)
+
 [node name="main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -984,8 +988,17 @@ zoom = Vector2(2.5, 2.5)
 editor_draw_limits = true
 script = ExtResource("6_ahgm4")
 
+[node name="end_area" type="Area2D" parent="YSort/Camera2D"]
+position = Vector2(1, 219)
+script = ExtResource("9_h37w5")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Camera2D/end_area"]
+shape = SubResource("RectangleShape2D_8ot6t")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
 
+[connection signal="body_entered" from="YSort/Camera2D/end_area" to="YSort/Camera2D/end_area" method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

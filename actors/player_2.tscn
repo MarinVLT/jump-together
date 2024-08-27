@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bac252o8a2l0s"]
+[gd_scene load_steps=17 format=3 uid="uid://bac252o8a2l0s"]
 
 [ext_resource type="Script" path="res://scripts/player2.gd" id="1_b2m0y"]
+[ext_resource type="AudioStream" uid="uid://gv138xis61cb" path="res://assets/sounds/jump.mp3" id="3_4kyu7"]
 [ext_resource type="Texture2D" uid="uid://gmkgd7ktr72" path="res://assets/Persongens/capivara/mini_capy-removebg-preview.png" id="3_lig81"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81lft"]
@@ -112,3 +113,6 @@ animation = &"run"
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_m0tg1")
+
+[node name="jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4kyu7")
