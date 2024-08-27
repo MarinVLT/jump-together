@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://iip2gdfv0jxg"]
+[gd_scene load_steps=7 format=3 uid="uid://iip2gdfv0jxg"]
 
 [ext_resource type="Script" path="res://reset.gd" id="1_setok"]
 [ext_resource type="Theme" uid="uid://burrrtpd8blug" path="res://themes/default_btn.tres" id="1_wiqc0"]
+[ext_resource type="AudioStream" uid="uid://c8170sebfq0pf" path="res://assets/sounds/fail_sound.mp3" id="3_arkxw"]
 
 [sub_resource type="Animation" id="Animation_hfoyn"]
 length = 0.001
@@ -103,6 +104,10 @@ libraries = {
 "": SubResource("AnimationLibrary_8two6")
 }
 autoplay = "fading"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_arkxw")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
