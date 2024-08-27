@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6j33v5y1yxk6"]
+[gd_scene load_steps=16 format=3 uid="uid://b6j33v5y1yxk6"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rrhqe"]
 [ext_resource type="FontFile" uid="uid://bxy7advf4ljym" path="res://themes/fonts/m04fatal_fury/m04b.TTF" id="2_eopce"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ilgqidtpek3" path="res://assets/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="5_dp6ns"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="6_ahgm4"]
 [ext_resource type="Script" path="res://end_area.gd" id="9_h37w5"]
+[ext_resource type="AudioStream" uid="uid://udht8rg6akl" path="res://assets/sounds/background_music.mp3" id="10_rgu6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28lst"]
 texture = ExtResource("5_dp6ns")
@@ -999,6 +1000,11 @@ shape = SubResource("RectangleShape2D_8ot6t")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_rgu6s")
+volume_db = -5.012
+autoplay = true
 
 [connection signal="body_entered" from="YSort/Camera2D/end_area" to="YSort/Camera2D/end_area" method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
