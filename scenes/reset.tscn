@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://iip2gdfv0jxg"]
+[gd_scene load_steps=8 format=3 uid="uid://iip2gdfv0jxg"]
 
 [ext_resource type="Script" path="res://reset.gd" id="1_setok"]
 [ext_resource type="Theme" uid="uid://burrrtpd8blug" path="res://themes/default_btn.tres" id="1_wiqc0"]
+[ext_resource type="FontFile" uid="uid://7eoqemlu64pw" path="res://assets/fonts/Village.ttf" id="2_uldi7"]
 [ext_resource type="AudioStream" uid="uid://c8170sebfq0pf" path="res://assets/sounds/fail_sound.mp3" id="3_arkxw"]
 
 [sub_resource type="Animation" id="Animation_hfoyn"]
@@ -76,8 +77,9 @@ alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uldi7")
 theme_override_font_sizes/font_size = 100
-text = "VOCÊ CAIU!!!!!!!!"
+text = "VOCE CAIU!!!!!!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
