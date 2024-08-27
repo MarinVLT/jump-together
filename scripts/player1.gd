@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping := false
 @onready var animation := $animRato as AnimatedSprite2D  # Ajuste se necessário para o seu nó de animação
 @onready var chain := $"../Chain" as Node2D  # Referência para a corrente
+@onready var jump = $jump
 
 func _process(delta):
 	# Verifica se o personagem caiu fora da tela
@@ -42,7 +43,10 @@ func _physics_process(delta):
 		if not is_jumping:
 			animation.play("run")
 	elif is_jumping:
+		jump.play()
 		animation.play("jump")
+		
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		animation.play("idle")
