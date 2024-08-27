@@ -36,8 +36,10 @@ script = ExtResource("1_5cjf1")
 
 [node name="bg" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1693.0
-offset_bottom = 922.0
+offset_left = -158.0
+offset_top = -68.0
+offset_right = 1535.0
+offset_bottom = 854.0
 texture = ExtResource("1_q0kic")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -58,7 +60,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(4.45209e-07, 0.186995, 0.0121992, 1)
 theme_override_font_sizes/font_size = 32
-text = "Controles"
+text = "CONTROLES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -68,11 +70,11 @@ theme_override_constants/margin_top = 15
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "Andar: Setas Direita e Esquerda 
-Interagir: E
-Pular: Barra de Espaço
-Correr: Shift"
+text = "Andar: A e D / ← e →
+Pular: W /  ↑ 
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
