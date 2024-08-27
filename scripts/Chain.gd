@@ -1,9 +1,10 @@
 extends Node2D
 
-@export var chain_length: int = 5
+@export var chain_length: int = 20  # Aumente a quantidade de nós para melhorar a visibilidade
 @export var link_scene: PackedScene = preload("res://actors/Link.tscn")
 @export var player1_path: NodePath = NodePath("Player1")
 @export var player2_path: NodePath = NodePath("Player2")
+@export var max_spacing: float = 3  # Limite de espaçamento entre os links
 
 var player1: CharacterBody2D
 var player2: CharacterBody2D
@@ -31,7 +32,7 @@ func create_chain():
 	var previous_link = player1
 
 	for i in range(chain_length):
-		var link = link_scene.instantiate() as Node2D
+		var link = link_scene.instantiate() as RigidBody2D
 		if link:
 			add_child(link)
 			link.position = lerp(player1.position, player2.position, float(i) / chain_length)
@@ -39,7 +40,6 @@ func create_chain():
 			var joint = PinJoint2D.new()
 			joint.node_a = previous_link.get_path()
 			joint.node_b = link.get_path()
-			joint.position = link.position
 			add_child(joint)
 
 			links.append(link)
@@ -47,10 +47,10 @@ func create_chain():
 		else:
 			print("Não foi possível instanciar o link.")
 
+	# Cria o último joint para conectar o último link ao player2
 	var joint_last = PinJoint2D.new()
 	joint_last.node_a = previous_link.get_path()
 	joint_last.node_b = player2.get_path()
-	joint_last.position = player2.position
 	add_child(joint_last)
 
 func remove_links():
@@ -66,17 +66,16 @@ func _process(_delta: float):
 			# Remove links inválidos antes de qualquer outra operação
 			remove_invalid_links()
 
-			if player1 and player2:
-				#print("Player1 position: ", player1.position)
-				#print("Player2 position: ", player2.position)
-				var distance = player1.position.distance_to(player2.position)
+			var distance = player1.position.distance_to(player2.position)
 			
-				if distance > (chain_length * 20): # Ajuste o multiplicador conforme necessário
-					var direction = (player2.position - player1.position).normalized()
-					if player1.has_method("set_velocity"):
-						player1.set_velocity(Vector2(direction.x * -50, player1.velocity.y))
-					if player2.has_method("set_velocity"):
-						player2.set_velocity(Vector2(direction.x * 50, player2.velocity.y))
+			# Impede que os jogadores se afastem mais do que o comprimento da corrente
+			if distance > chain_length * max_spacing:
+				var direction = (player2.position - player1.position).normalized()
+				
+				# Atualiza as posições dos jogadores para manter a corrente tensionada
+				player1.position = player2.position - direction * (chain_length * max_spacing)
+				player2.position = player1.position + direction * (chain_length * max_spacing)
+
 		else:
 			print("Um ou ambos os jogadores não estão na árvore de nós ou foram removidos.")
 	else:

@@ -9,7 +9,7 @@ const SCREEN_HEIGHT = 1152  # Ajuste conforme necessário para corresponder à a
 # Obtém a gravidade das configurações do projeto.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping := false
-@onready var animation := $anim as AnimatedSprite2D  # Ajuste se necessário para o seu nó de animação
+@onready var animation := $animCapivara as AnimatedSprite2D  # Ajuste se necessário para o seu nó de animação
 @onready var chain := $"../Chain" as Node2D  # Referência para a corrente
 
 func _process(delta):

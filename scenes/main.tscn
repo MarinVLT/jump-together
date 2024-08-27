@@ -960,15 +960,15 @@ y_sort_enabled = true
 position = Vector2(387, 1)
 
 [node name="Player1" parent="YSort" groups=["players"] instance=ExtResource("2_j6gnq")]
-position = Vector2(399, 153)
+position = Vector2(390, 161)
 
 [node name="Player2" parent="YSort" groups=["players"] instance=ExtResource("3_mwyte")]
 position = Vector2(324, 157)
 
 [node name="PinJoint2D" type="PinJoint2D" parent="YSort"]
 position = Vector2(20, 460)
-node_a = NodePath("../Player2")
-node_b = NodePath("../Player1")
+node_a = NodePath("../Player1")
+node_b = NodePath("../Player2")
 
 [node name="Chain" type="Node2D" parent="YSort"]
 light_mask = 2

@@ -90,7 +90,7 @@ func _generate_platform():
 		var platform = load(platform_scene_path).instantiate()
 		if platform:
 			var x_position = randi_range(250, 500)
-			var y_position = last_y_position - randi_range(50, 100)
+			var y_position = last_y_position - randi_range(50, 80)
 			platform.position = Vector2(x_position, y_position)
 			ysort.add_child(platform)
 

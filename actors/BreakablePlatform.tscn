@@ -63,7 +63,7 @@ script = ExtResource("1_ff145")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7ja7e")
 animation = &"break"
-frame_progress = 0.175703
+frame_progress = 0.1607
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ij3mi")
