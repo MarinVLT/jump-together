@@ -52,29 +52,27 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij3mi"]
-size = Vector2(64, 4)
+size = Vector2(46, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxbhu"]
-size = Vector2(64, 10)
+size = Vector2(46, 10)
 
 [node name="BreakablePlatform" type="StaticBody2D"]
 script = ExtResource("1_xp080")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(9, 0)
-scale = Vector2(1.375, 1)
+position = Vector2(9.53674e-07, 0)
 sprite_frames = SubResource("SpriteFrames_7ja7e")
 animation = &"break"
 frame_progress = 0.1607
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9, 0)
 shape = SubResource("RectangleShape2D_ij3mi")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(9, -3)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_fxbhu")
 debug_color = Color(0.884847, 0.000309962, 0.809423, 0.42)
 

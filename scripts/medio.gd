@@ -60,6 +60,7 @@ func _process(delta):
 			score_timer += delta
 			if score_timer >= score_interval:
 				score += 1
+				GlobalScore.score += 1
 				score_timer = 0.0  # Reinicia o timer de pontuação
 				print("Score: ", score)
 				_update_score_label()  # Atualiza o Label com a nova pontuação

@@ -17,20 +17,21 @@ grow_vertical = 2
 script = ExtResource("1_lmpah")
 
 [node name="bg" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -2.0
-offset_top = -3.0
-offset_right = 2017.0
-offset_bottom = 1103.0
-texture = ExtResource("1_c8r0p")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 894.0
-offset_bottom = 680.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_c8r0p")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.07
+anchor_bottom = 1.0
+offset_right = 842.0
+offset_bottom = 700.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.564972, 0.485075)
@@ -90,6 +91,7 @@ text = "SAIR"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("4_ws5tf")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
