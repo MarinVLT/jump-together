@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const WALK_SPEED = 100.0
 const RUN_SPEED = 200.0
-const JUMP_FORCE = -600.0
+const JUMP_FORCE = -700.0
 
 const SCREEN_HEIGHT = 600  # Ajuste conforme necessário para corresponder à altura da tela
 

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var chain_length: int = 23  # Aumente a quantidade de nós para melhorar a visibilidade
+@export var chain_length: int = 25  # Aumente a quantidade de nós para melhorar a visibilidade
 @export var link_scene: PackedScene = preload("res://actors/Link.tscn")
 @export var player1_path: NodePath = NodePath("Player1")
 @export var player2_path: NodePath = NodePath("Player2")
@@ -101,8 +101,8 @@ func handle_hanging_behavior():
 		player1.velocity.y = clamp(player1.velocity.y, -500, 500)  # Limita a velocidade do Player 1
 	else:
 		# Ambos os jogadores estão no ar ou no chão
-		player1.velocity.y = clamp(player1.velocity.y, -600, 400)  # Mantém a velocidade de queda normal
-		player2.velocity.y = clamp(player2.velocity.y, -600, 400)  # Mantém a velocidade de queda normal
+		player1.velocity.y = clamp(player1.velocity.y, -700, 400)  # Mantém a velocidade de queda normal
+		player2.velocity.y = clamp(player2.velocity.y, -700, 400)  # Mantém a velocidade de queda normal
 
 
 func remove_invalid_links():
