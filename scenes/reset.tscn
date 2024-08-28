@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://iip2gdfv0jxg"]
 
-[ext_resource type="Script" path="res://reset.gd" id="1_setok"]
+[ext_resource type="Script" path="res://scripts/reset.gd" id="1_setok"]
 [ext_resource type="Theme" uid="uid://burrrtpd8blug" path="res://themes/default_btn.tres" id="1_wiqc0"]
 [ext_resource type="FontFile" uid="uid://7eoqemlu64pw" path="res://assets/fonts/Village.ttf" id="2_uldi7"]
 [ext_resource type="AudioStream" uid="uid://c8170sebfq0pf" path="res://assets/sounds/fail_sound.mp3" id="3_arkxw"]
