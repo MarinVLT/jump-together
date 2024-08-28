@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgtvejf4i1igr"]
+[gd_scene load_steps=5 format=3 uid="uid://btgfn5iampwvx"]
 
-[ext_resource type="Texture2D" uid="uid://b0ilgqidtpek3" path="res://assets/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="1_ho5gk"]
+[ext_resource type="Texture2D" uid="uid://b0ilgqidtpek3" path="res://assets/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="1_vnowx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i378s"]
-atlas = ExtResource("1_ho5gk")
+atlas = ExtResource("1_vnowx")
 region = Rect2(272, 16, 48, 5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uxunc"]
@@ -18,15 +18,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq3ep"]
-size = Vector2(94, 4)
+size = Vector2(63, 4)
 
 [node name="Plataforma" type="StaticBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(24, 0)
-scale = Vector2(2, 1)
+position = Vector2(8, 0)
+scale = Vector2(1.33333, 1)
 sprite_frames = SubResource("SpriteFrames_uxunc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(23, 0)
+position = Vector2(7.5, 0)
 shape = SubResource("RectangleShape2D_eq3ep")

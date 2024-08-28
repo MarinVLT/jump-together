@@ -1,6 +1,6 @@
 extends Control
 
-const PLATFORM_PATH = "res://actors/Plataform.tscn"
+const PLATFORM_PATH = "res://actors/Plataform_impossivel.tscn"
 const BREAKABLE_PLATFORM_PATH = "res://actors/BreakablePlatform.tscn"
 const MOVING_PLATFORM_PATH = "res://actors/MovingPlatform.tscn"  # Novo caminho para a plataforma móvel
 const BREAKABLE_PLATFORM_CHANCE = 0.15  # 20% de chance de gerar uma plataforma quebrável
