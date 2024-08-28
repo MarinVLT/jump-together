@@ -16,6 +16,7 @@ func _process(delta):
 	# Verifica se o personagem caiu fora da tela
 	if position.y > SCREEN_HEIGHT:
 		die()
+		#print('teste')
 
 func _physics_process(delta):
 	# Adiciona a gravidade
@@ -78,3 +79,4 @@ func die():
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("players"):
 		die()
+		#print("teste")
