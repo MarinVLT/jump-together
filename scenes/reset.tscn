@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://iip2gdfv0jxg"]
+
+[gd_scene load_steps=6 format=3 uid="uid://dkofkuk1owmp0"]
+
 
 [ext_resource type="Script" path="res://scripts/reset.gd" id="1_setok"]
 [ext_resource type="Theme" uid="uid://burrrtpd8blug" path="res://themes/default_btn.tres" id="1_wiqc0"]

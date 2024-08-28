@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var chain_length: int = 20  # Aumente a quantidade de nós para melhorar a visibilidade
+@export var chain_length: int = 23  # Aumente a quantidade de nós para melhorar a visibilidade
 @export var link_scene: PackedScene = preload("res://actors/Link.tscn")
 @export var player1_path: NodePath = NodePath("Player1")
 @export var player2_path: NodePath = NodePath("Player2")
@@ -72,14 +72,38 @@ func _process(_delta: float):
 			if distance > chain_length * max_spacing:
 				var direction = (player2.position - player1.position).normalized()
 				
-				# Atualiza as posições dos jogadores para manter a corrente tensionada
-				player1.position = player2.position - direction * (chain_length * max_spacing)
-				player2.position = player1.position + direction * (chain_length * max_spacing)
+				# Calcula o ponto médio entre os jogadores para manter a corrente tensionada de forma equilibrada
+				var mid_point = player1.position + direction * (distance / 2)
+				
+				# Reposiciona os jogadores ao redor do ponto médio
+				player1.position = mid_point - direction * (chain_length * max_spacing / 2)
+				player2.position = mid_point + direction * (chain_length * max_spacing / 2)
+			
+			# Comportamento de pendurar
+			handle_hanging_behavior()
 
 		else:
 			print("Um ou ambos os jogadores não estão na árvore de nós ou foram removidos.")
 	else:
 		print("Um ou ambos os jogadores são nulos.")
+
+func handle_hanging_behavior():
+	var player1_on_ground = player1.is_on_floor() or player1.is_on_wall()
+	var player2_on_ground = player2.is_on_floor() or player2.is_on_wall()
+	
+	if player1_on_ground and not player2_on_ground:
+		# Player 1 está em uma plataforma e Player 2 está pendurado
+		player2.velocity.y += 20  # Aumenta a velocidade de queda do Player 2 para simular pendurar
+		player2.velocity.y = clamp(player2.velocity.y, -500, 500)  # Limita a velocidade do Player 2
+	elif player2_on_ground and not player1_on_ground:
+		# Player 2 está em uma plataforma e Player 1 está pendurado
+		player1.velocity.y += 20  # Aumenta a velocidade de queda do Player 1 para simular pendurar
+		player1.velocity.y = clamp(player1.velocity.y, -500, 500)  # Limita a velocidade do Player 1
+	else:
+		# Ambos os jogadores estão no ar ou no chão
+		player1.velocity.y = clamp(player1.velocity.y, -600, 400)  # Mantém a velocidade de queda normal
+		player2.velocity.y = clamp(player2.velocity.y, -600, 400)  # Mantém a velocidade de queda normal
+
 
 func remove_invalid_links():
 	for link in links:

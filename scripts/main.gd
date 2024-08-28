@@ -3,8 +3,8 @@ extends Control
 const PLATFORM_PATH = "res://actors/Plataform.tscn"
 const BREAKABLE_PLATFORM_PATH = "res://actors/BreakablePlatform.tscn"
 const MOVING_PLATFORM_PATH = "res://actors/MovingPlatform.tscn"  # Novo caminho para a plataforma móvel
-const BREAKABLE_PLATFORM_CHANCE = 0.2  # 20% de chance de gerar uma plataforma quebrável
-const MOVING_PLATFORM_CHANCE = 0.1  # 10% de chance de gerar uma plataforma móvel
+const BREAKABLE_PLATFORM_CHANCE = 0.15  # 20% de chance de gerar uma plataforma quebrável
+const MOVING_PLATFORM_CHANCE = 0.07  # 10% de chance de gerar uma plataforma móvel
 
 const SCREEN_WIDTH = 648
 const SCREEN_HEIGHT = 1000
@@ -89,7 +89,7 @@ func _generate_platform():
 	if ResourceLoader.exists(platform_scene_path):
 		var platform = load(platform_scene_path).instantiate()
 		if platform:
-			var x_position = randi_range(250, 500)
+			var x_position = randi_range(275, 480)
 			var y_position = last_y_position - randi_range(50, 80)
 			platform.position = Vector2(x_position, y_position)
 			ysort.add_child(platform)
