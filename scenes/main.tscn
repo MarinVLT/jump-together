@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=14 format=3 uid="uid://b6j33v5y1yxk6"]
+[gd_scene load_steps=16 format=3 uid="uid://b6j33v5y1yxk6"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rrhqe"]
 [ext_resource type="FontFile" uid="uid://bxy7advf4ljym" path="res://themes/fonts/m04fatal_fury/m04b.TTF" id="2_eopce"]
@@ -10,10 +9,7 @@
 [ext_resource type="Script" path="res://scripts/Chain.gd" id="4_u5jrd"]
 [ext_resource type="Texture2D" uid="uid://b0ilgqidtpek3" path="res://assets/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="5_dp6ns"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="6_ahgm4"]
-
-[ext_resource type="Script" path="res://scripts/end_area.gd" id="9_h37w5"]
 [ext_resource type="AudioStream" uid="uid://dpj735ahtgpdi" path="res://assets/sounds/ingame_music.mp3" id="11_hdxxc"]
-
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28lst"]
 texture = ExtResource("5_dp6ns")
@@ -999,11 +995,9 @@ player1_path = NodePath("../Player1")
 player2_path = NodePath("../Player2")
 
 [node name="Camera2D" type="Camera2D" parent="YSort"]
-
 position = Vector2(360, 283)
 zoom = Vector2(2.5, 2.5)
 limit_bottom = 500
-
 editor_draw_limits = true
 script = ExtResource("6_ahgm4")
 
@@ -1011,13 +1005,12 @@ script = ExtResource("6_ahgm4")
 position = Vector2(-2, 204)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Camera2D/Area2D"]
-position = Vector2(11, 62)
+position = Vector2(15, 48)
 shape = SubResource("RectangleShape2D_0g3qd")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
-
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_hdxxc")
@@ -1026,5 +1019,4 @@ autoplay = true
 
 [connection signal="body_entered" from="YSort/Camera2D/Area2D" to="YSort/Player1" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="YSort/Camera2D/Area2D" to="YSort/Player2" method="_on_area_2d_body_entered"]
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

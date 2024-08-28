@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping := false
 @onready var animation := $animRato as AnimatedSprite2D  # Ajuste se necessário para o seu nó de animação
 @onready var chain := $"../Chain" as Node2D  # Referência para a corrente
+@onready var jump_sound = $jump
 
 func _process(delta):
 	# Verifica se o personagem caiu fora da tela
@@ -26,6 +27,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up") and is_on_floor() and not is_chain_stretched():
 		velocity.y = JUMP_FORCE
 		is_jumping = true
+		jump_sound.play()
 	elif is_on_floor():
 		is_jumping = false
 
