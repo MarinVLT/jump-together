@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ilgqidtpek3" path="res://assets/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="5_dp6ns"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="6_ahgm4"]
 [ext_resource type="Script" path="res://scripts/end_area.gd" id="9_h37w5"]
-[ext_resource type="AudioStream" uid="uid://udht8rg6akl" path="res://assets/sounds/background_music.mp3" id="10_rgu6s"]
+[ext_resource type="AudioStream" uid="uid://dpj735ahtgpdi" path="res://assets/sounds/ingame_music.mp3" id="11_hdxxc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28lst"]
 texture = ExtResource("5_dp6ns")
@@ -1014,8 +1014,8 @@ wait_time = 0.05
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_rgu6s")
-volume_db = -1.253
+stream = ExtResource("11_hdxxc")
+pitch_scale = 1.15
 autoplay = true
 
 [connection signal="body_entered" from="YSort/Camera2D/end_area" to="YSort/Camera2D/end_area" method="_on_body_entered"]

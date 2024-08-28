@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpqmi082gqpjf"]
+[gd_scene load_steps=7 format=3 uid="uid://bpqmi082gqpjf"]
 
 [ext_resource type="Texture2D" uid="uid://babv1qih4ky0q" path="res://assets/title_screen/sky-bg.jpg" id="1_c8r0p"]
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_lmpah"]
 [ext_resource type="Texture2D" uid="uid://co8xure3m7gn5" path="res://assets/title_screen/JUMPTOGETHER-logo-removebg-preview.png" id="1_pij2s"]
 [ext_resource type="Texture2D" uid="uid://ce61jbv8c6rlx" path="res://assets/title_screen/rato_e_capivara.png" id="4_ws5tf"]
+[ext_resource type="AudioStream" uid="uid://udht8rg6akl" path="res://assets/sounds/background_music.mp3" id="6_665sy"]
 [ext_resource type="Theme" uid="uid://burrrtpd8blug" path="res://themes/default_btn.tres" id="35_cg7ex"]
 
 [node name="TitleScreen" type="Control"]
@@ -90,6 +91,11 @@ text = "SAIR"
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_ws5tf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_665sy")
+volume_db = -1.253
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start_btn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/controls_btn" to="." method="_on_controls_btn_pressed"]
