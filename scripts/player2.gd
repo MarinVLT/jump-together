@@ -15,7 +15,7 @@ var is_jumping := false
 func _process(delta):
 	# Verifica se o personagem caiu fora da tela
 	if position.y > SCREEN_HEIGHT:
-		get_tree().change_scene("res://scenes/main.tscn") 
+		die()
 
 func _physics_process(delta):
 	# Adiciona a gravidade
@@ -64,6 +64,17 @@ func is_chain_stretched() -> bool:
 	return chain and position.distance_to(chain.player1.position) > (chain.chain_length * 20)
 
 
+func die():
+	var scene_path = "res://scenes/reset.tscn"
+	var tree = get_tree()
+	if tree:
+		if FileAccess.file_exists(scene_path):
+			tree.change_scene_to_file(scene_path) 
+		else:
+			print("Caminho da cena não encontrado: ", scene_path)
+	else:
+		print("Árvore de cena não encontrada!")
+
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("players"):
-		get_tree().change_scene("res://scenes/main.tscn")
+		die()
